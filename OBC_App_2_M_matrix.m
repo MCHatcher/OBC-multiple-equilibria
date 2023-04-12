@@ -24,7 +24,7 @@ for ll=1:length(PI_coef)
     for mm=1:length(DY_coef)
 
         thetta_pi = PI_coef(ll);
-        thetta_dy = DY_coef(jj);
+        thetta_dy = DY_coef(mm);
             
     % Model and calibration
     run Insert_App_2_loop
