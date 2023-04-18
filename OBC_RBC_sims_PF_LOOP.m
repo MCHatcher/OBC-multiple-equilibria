@@ -94,7 +94,7 @@ c_plot(j) = 100*x_fin(3,1);
 end
 
 %figure(1)
-subplot(1,2,1), plot(100*e1_stack,inv_plot,'k'), ylabel('Percent'), title('Policy function for Investment - Level'), hold on,
+subplot(1,2,1), plot(100*e1_stack,inv_plot,'k'), ylabel('Percent'), title('Policy function for Investment'), hold on,
 xlabel('Shock size')
 subplot(1,2,2), plot(100*e1_stack,c_plot,'k'), ylabel('Percent'), title('Policy function for Consumption'), hold on,
 xlabel('Shock size')
