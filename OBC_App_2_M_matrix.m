@@ -1,18 +1,12 @@
-%Application 2 from the OBC paper (NK model), analysis of the M matrix.
+%Policy Application from the OBC paper (NK model), analysis of the M matrix.
 %To study a different example, simply change the parameters and matrices
 %Model structures are defined in the 'Insert' files
 %Written by Michael Hatcher (m.c.hatcher@soton.ac.uk). Any errors are my own.
 
 clc; clear; %close all;
 
-%nvar = 4;
-nvar = 4;  %No. vars in x
-nx = 0; %  %No. exogenous variables in x
+%Size of M matrix
 T_guess = 2;
-
-%Initial values
-e_vec = zeros(1,T_guess+1); 
-X_init = zeros(nvar,1);   %Initial value
 
 %Parameter values
 sigma = 1;
@@ -29,6 +23,14 @@ for ll=1:length(PI_coef)
     % Model and calibration
     run Insert_App_2_loop
     %run Insert_App_2_loop_PLT
+
+    %No. of variables
+    nvar = length(B1(:,1));  %No. vars in x
+    nx = 0; %  %No. exogenous variables in x
+
+    %Initial values
+    e_vec = zeros(1,T_guess+1); 
+    X_init = zeros(nvar,1);   %Initial value
 
     % Find terminal solution (Cho and Moreno 2011, JEDC)
     run Cho_and_Moreno

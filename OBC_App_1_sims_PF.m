@@ -1,25 +1,24 @@
-%Application 1 from the OBC paper
+%Example 1' from the OBC paper (Asset Pricing Model, Supp Appendix)
 %To study a different example, simply change the parameters and matrices
 %Model structures are defined in the 'Insert' files
 %Written by Michael Hatcher (m.c.hatcher@soton.ac.uk). Any errors are my own.
 
 clc; clear; %close all;
 
-T_guess = 1000; % Final date before terminal solution (guess)
+T_guess = 40; % Final date before terminal solution (guess)
 T_sim = T_guess + 17; % Simulation length
 T_news = 5;
 N_guess = 80;  %No. of guesses 
-nvar = 3;  %No. vars in x
-nx = 1;  %No. exogenous variables in x
-
-%Housekeeping
-Time = 1:T_sim-1; 
 
 %Shocks
-zero = zeros(1,T_sim+1); mstar = zeros(N_guess,1);
+zero = zeros(1,T_sim+1); 
 
 % Model and calibration
 run Insert_App_1
+
+%No. of variables
+nvar = length(B1(:,1));
+nx = 1;  %No. exogenous variables in x
 
 % Find terminal solution (Cho and Moreno 2011, JEDC)
 run Cho_and_Moreno
@@ -73,15 +72,18 @@ k = length(x_fin(:,1))/nvar;
      if k==1
         disp('Unique solution found')
     else
-        disp('Warning: Multiple solutions or no solution')
+        disp('Multiple solutions found')
      end
     
 end
 
-%figure(1)
+T_plot = 15; %Time horizon in plot
+T_sim2 = (T_sim<=T_plot)*T_sim + (T_sim>T_plot)*T_plot; 
+Time = 1:T_sim2-1;  %Counter for time
 
-subplot(1,2,1), plot(Time,100*x_fin(2,1:T_sim-1),'--k'),  xlabel('Time'), title('Asset price'), hold on,
-subplot(1,2,2), plot(Time,100*(x_fin(1,1:T_sim-1)-X1_min),'--k'),  xlabel('Time'), title('Interest rate'), hold on, 
+figure(1)
+subplot(1,2,1), plot(Time,100*x_fin(2,1:T_sim2-1),'--k'),  xlabel('Time'), title('Asset price'), hold on,
+subplot(1,2,2), plot(Time,100*(x_fin(1,1:T_sim2-1)-X1_min),'--k'),  xlabel('Time'), title('Interest rate'), hold on, 
 
 
    

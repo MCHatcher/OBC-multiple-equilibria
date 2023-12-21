@@ -5,7 +5,7 @@
 %Calibration
 betta = 0.99;
 X1_min = betta-1; 
-sigma = 0.8;
+sigma = 1;
 kappa = (1-0.85)*(1-0.85*betta)*(2+sigma)/0.85;
 rho_i = 0;
 

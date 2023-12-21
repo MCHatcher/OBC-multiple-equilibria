@@ -8,14 +8,17 @@ clc; clear; %close all;
 T_guess = 4; % Final date before terminal solution (guess)
 T_sim = T_guess + 27; % Simulation length
 N_guess = 30;  %No. of guesses 
-nvar = 2;  %No. of vars in x
-nx = 0;  %No. exogenous vars in x
-
-Verify = NaN(T_sim-1,1);  mstar = zeros(N_guess,1); ind_sol = NaN(N_guess,T_sim-1);
-Time = 1:T_sim-1;  X_sol = NaN(nvar,T_sim-1,N_guess);  
 
 % Model and calibration
 run Insert_Example_2
+
+%No. of variables
+nvar = length(B1(:,1)); %No. vars in x
+nx = 0;  %No. exogenous vars in x
+
+%Housekeeping
+Verify = NaN(T_sim-1,1);  mstar = zeros(N_guess,1); ind_sol = NaN(N_guess,T_sim-1);
+Time = 1:T_sim-1;  X_sol = NaN(nvar,T_sim-1,N_guess);  
 
 % Find terminal solution (Cho and Moreno 2011, JEDC)
 run Cho_and_Moreno
@@ -24,7 +27,7 @@ run Cho_and_Moreno
 X_init = [0; pi_0];  
 X_stack = NaN(length(X_init),1);
 e_vec = zeros(size(B4,2),T_sim+1);
-e_vec(1,1) = -0.001; e(1,2) = -0.001;  %Shock in period 1
+e_vec(1,1) = 0; e(1,2) = 0;  %Shock in period 1
 
 Omeg_t = NaN(size(Omega_bar,1), size(Omega_bar,2), T_sim);
 Gama_t = NaN(size(Gama_bar,1), size(Gama_bar,2), T_sim);
@@ -62,7 +65,7 @@ k = length(x_fin(:,1,1))/nvar;
 if k==1
     disp('Unique solution found')
 else
-    disp('Warning: Multiple solutions or no solution')
+    disp('Multiple solutions found')
 end
 
 for j=1:k

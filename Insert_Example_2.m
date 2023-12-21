@@ -1,4 +1,4 @@
-%Example 2 - ZLB-truncated Taylor rule + Fisher equation (from Holden,2022, REStat)
+%Fisherian model: ZLB-truncated Taylor rule + Fisher equation (Example 2 from Holden,2022, REStat)
 
 %Calibration
 r = 0.01;

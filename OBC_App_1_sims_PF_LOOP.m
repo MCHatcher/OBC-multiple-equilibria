@@ -1,17 +1,14 @@
-%Application 1 from the OBC paper
+%Example 1' from the OBC paper (Asset Pricing Model, Supp Appendix)
 %To study a different example, simply change the parameters and matrices
 %Model structures are defined in the 'Insert' files
 %Written by Michael Hatcher (m.c.hatcher@soton.ac.uk). Any errors are my own.
 
 clc; clear; %close all;
 
-T_guess = 5; % Final date before terminal solution (guess)
-T_sim = T_guess + 1; % Simulation length
+T_guess = 6; % Final date before terminal solution (guess)
+T_sim = T_guess + 5; % Simulation length
 N_guess = 30;  %No. of guesses 
 T_news = 5;
-
-nvar = 3;  %No. vars in x
-nx = 1; %  %No. exogenous variables in x
 N_policy = 60; %No. of points for policy function
 
 %Housekeeping
@@ -20,6 +17,10 @@ Time = 1:T_sim-1; r_plot = NaN(N_policy,1); q_plot = r_plot;
 
 % Model and calibration
 run Insert_App_1
+
+%No. of variables
+nvar = length(B1(:,1));
+nx = 1; %  %No. exogenous variables in x
 
 % Find terminal solution (Cho and Moreno 2011, JEDC)
 run Cho_and_Moreno
@@ -38,7 +39,7 @@ end
 vec_1 = ones(T_sim-T_guess,1);
 
 %Shocks
-e(2:T_news) = -0.02; %Specified news shocks
+e(2:T_news) = 0; %Specified news shocks
 e1_stack = linspace(-0.2,0.2,N_policy);
 
 for j=1:length(e1_stack)
@@ -77,7 +78,7 @@ k = length(x_fin(:,1))/nvar;
      if k==1
         %disp('Unique solution found')
     else
-        disp('Warning: Multiple solutions or no solution')
+        disp('Multiple solutions found')
      end
     
 end
@@ -89,6 +90,7 @@ q_plot(j) = 100*x_fin(2,1);
 
 end
 
+figure(1)
 subplot(2,1,1), plot(e1_stack,r_plot,'k'), ylabel('Percent'), title('Policy function for Interest Rate - Level'), hold on, 
 axis([-inf inf -inf inf])
 subplot(2,1,2), plot(e1_stack,q_plot,'k'), ylabel('Percent'), title('Policy function for Asset Price - Percent Dev. from Steady State'), hold on, 

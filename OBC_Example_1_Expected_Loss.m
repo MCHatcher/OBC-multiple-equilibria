@@ -8,14 +8,16 @@ r = 0.005;
 phi = 2;
 psi = 0.93;
 pi_0 = 0.005;
-betta = 0.99; %Discount factor
 
 %Find stable root
 p = [-1 phi -psi]; coefs = roots(p);
 omeg = min(abs(coefs));  
 omega_check = 1-sqrt(1-psi) - omeg;
 
-T_sim = 5000;  
+%Loss function
+T_sim = 5000;  %Time horizon
+betta = 0.99;  %Discount factor
+
 pi = NaN(T_sim,1); pi_bind = pi; int = pi; int_bind = pi; int_star = pi; int_bind_star = pi;
 pi_series = pi; pi_bind_series = pi;
 Time = 0:T_sim; 

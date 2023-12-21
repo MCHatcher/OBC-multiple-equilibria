@@ -1,4 +1,4 @@
-%Extra application (RBC model + investment constraint) in the Supplementary Appendix.
+%Extra Example (RBC model + investment constraint) in the Supplementary Appendix.
 %This code computes and plots the policy functions for Investment and
 %Consumption. To study a different example, simply change the parameters and matrices
 %Model structures are defined in the 'Insert' files
@@ -10,8 +10,6 @@ T_guess = 20; % Final date before terminal solution (guess)
 T_sim = T_guess+1; % Simulation length
 T_news = 3;
 N_guess = 20;  %No. of guesses 
-nvar = 7;  %No. vars in x
-nx = 1;  %No. exog vars in x
 N_policy = 100; %No. of points for policy function
 
 %Housekeeping
@@ -28,6 +26,10 @@ vec_1 = ones(T_sim-T_guess,1);
     
 % Model and calibration
 run Insert_RBC
+
+%No. of variables
+nvar = length(B1(:,1));
+nx = 1;  %No. exog vars in x
 
 % Find terminal solution (Cho and Moreno 2011, JEDC)
 run Cho_and_Moreno
@@ -93,7 +95,7 @@ c_plot(j) = 100*x_fin(3,1);
 
 end
 
-%figure(1)
+figure(1)
 subplot(1,2,1), plot(100*e1_stack,inv_plot,'k'), ylabel('Percent'), title('Policy function for Investment'), hold on,
 xlabel('Shock size')
 subplot(1,2,2), plot(100*e1_stack,c_plot,'k'), ylabel('Percent'), title('Policy function for Consumption'), hold on,

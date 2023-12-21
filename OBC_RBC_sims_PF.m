@@ -1,4 +1,4 @@
-%Extra application (RBC model + investment constraint) in the Supplementary Appendix.
+%Extra Example (RBC model + investment constraint) in the Supplementary Appendix.
 %This code plots the perfect foresight solution following a negative TFP
 %shock. To study a different example, simply change the parameters and matrices
 %Model structures are defined in the 'Insert' files
@@ -10,11 +10,6 @@ T_guess = 20; % Final date before terminal solution (guess)
 T_sim = 51; % Simulation length
 T_news = 3;
 N_guess = 50;  %No. of guesses 
-nvar = 7;  %No. vars in x
-nx = 1;  %No. exog vars in x
-
-%Housekeeping
-Time = 1:T_sim-1; 
 
 %Guessed structure
 rng(1)
@@ -27,6 +22,10 @@ vec_1 = ones(T_sim-T_guess,1);
     
 % Model and calibration
 run Insert_RBC
+
+%No. of variables
+nvar = length(B1(:,1));
+nx = 1;  %No. exog vars in x
 
 % Find terminal solution (Cho and Moreno 2011, JEDC)
 run Cho_and_Moreno
@@ -75,15 +74,19 @@ k = length(x_fin(:,1))/nvar;
      if k==1
         disp('Unique solution found')
     else
-        disp('Warning: Multiple solutions or no solution')
+        disp('Multiple solutions found')
      end
     
 end
 
+T_plot = 51; %Time horizon in plot
+T_sim2 = (T_sim<=T_plot)*T_sim + (T_sim>T_plot)*T_plot; 
+Time = 1:T_sim2-1;  %Counter for time
+
 %figure(1)
-subplot(1,3,1), plot(Time,100*x_fin(1,1:T_sim-1),'k'),  xlabel('Time'), title('Investment'), hold on,
-subplot(1,3,2), plot(Time,x_fin(2,1:T_sim-1),'k'),  xlabel('Time'), title('Capital'), hold on, 
-subplot(1,3,3), plot(Time,x_fin(3,1:T_sim-1),'k'),  xlabel('Time'), title('Consumption'), hold on, 
+subplot(1,3,1), plot(Time,100*x_fin(1,1:T_sim2-1),'k'),  xlabel('Time'), title('Investment'), hold on,
+subplot(1,3,2), plot(Time,x_fin(2,1:T_sim2-1),'k'),  xlabel('Time'), title('Capital'), hold on, 
+subplot(1,3,3), plot(Time,x_fin(3,1:T_sim2-1),'k'),  xlabel('Time'), title('Consumption'), hold on, 
 
    
 

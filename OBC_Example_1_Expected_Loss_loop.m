@@ -7,11 +7,14 @@ clc, clear
 r = 0.005;
 phi = 2;
 psi = 0.93;
-betta = 0.99; %Discount factor
-prob = 0.25;
 
 n_loop = 100;
 pi0_stack = linspace(1e-5,0.02,n_loop);
+
+%Loss function
+prob = 0.25;
+T_sim = 5000;  %Time horizon
+betta = 0.99;  %Discount factor
 Loss = NaN(n_loop,1); Loss_slack = Loss; Loss_diff = Loss; Zero = Loss;
 
 for i=1:n_loop
