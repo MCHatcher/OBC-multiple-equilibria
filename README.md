@@ -23,7 +23,7 @@ Guesses_master.m -- Based on the Guesses_....m files commented in by the user, t
 
 Guesses_master_FG.m -- Same as Guesses_master.m, but is convenient to have a file with more of Guesses_....m files 'commented in'. 
 
-Insert_App_1.m -- Specifies the calibration and matrices of the different regimes (slack and bind) in the Simple Asset Pricing Model in Iacoviello and Guerrieri (2015,JME). This is used in the OBC_App_1_...m files (see below) and some results are reported in Example 1' (Supplementary Appendix to the paper). 
+Insert_App_1.m -- Specifies the calibration and matrices of the different regimes (slack and bind) in the Simple Asset Pricing Model in Iacoviello and Guerrieri (2015,JME). This file is used in the OBC_App_1_...m files (see below) and some results are reported in Example 1' (Supplementary Appendix to the paper). 
 
 Insert_App_2.m -- Specifies the calibration and matrices of the different regimes (slack and bind) in the Policy Application in the paper (Section 4). Case of inflation targeting interest rate rule, potentially with interest rate smoothing.
 
@@ -34,5 +34,20 @@ Insert_App_2_FG.m -- Same as Insert_App_2.m but for the case of forward guidance
 Insert_App_2_loop.m -- Same as Insert_App_2.m but with some parameters commented out for analysis of M matrix at different parameter values. The parameter combinations are set in the OBC_App_2_M_matrix file (see below).
 
 Insert_App_2_loop_PLT.m -- Same as Insert_App_2_loop.m but for the case of the price-level targeting rule.
+
+Insert_Example_2.m -- Specifies the calibration and matrices of the different regimes (slack and bind) in the Fisherian model (Section 2.4, Example 1 and Example 2 in the paper).
+
+Insert_RBC.m -- Specifies the calibration and matrices of the different regimes (slack and bind) in the Real Business Cycle model in Iacoviello and Guerrieri (2015,JME). This file is used in the OBC_RBC_sims...m files (see below) and some results are reported in Example 2' (Supplementary Appendix to the paper). 
+
+Insert_Samuelson.m -- Specifies the calibration and matrices of the different regimes (slack and bind) in the Endogenous Business Cycle model in Example 3' (Supplementary Appendix to the paper). This file is used in the OBC_App_3_sims_PF.m file which simulates the perfect forsight path(s) for given initial conditions.
+
+M_matrix.m -- Computes the M matrix of impulse responses (see Holden,2023) for a model with structure defined in the Insert_....m files. The resulting matrix can then be used in P_matrix.m to determine whether the M matrix has the P-matrix property.
+
+OBC_App_1_sims_PF.m -- Simulates the perfect foresight paths in the Simple Asset Pricing model (Example 1', Supplementary Appendix). Only one solution is found 
+
+OBC_App_1_sims_PF_loop.m -- Plots the policy function in the Simple Asset Pricing model (Example 1', Supplementary Appendix).
+
+
+
 
 OTHER INFO
