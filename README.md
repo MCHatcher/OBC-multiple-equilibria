@@ -43,11 +43,11 @@ Insert_Samuelson.m -- Specifies the calibration and matrices of the different re
 
 M_matrix.m -- Computes the M matrix of impulse responses (see Holden,2023) for a model with structure defined in the Insert_....m files. The resulting matrix can then be used in P_matrix.m to determine whether the M matrix has the P-matrix property.
 
-OBC_App_1_sims_PF.m -- Simulates the perfect foresight paths in the Simple Asset Pricing model (Example 1', Supplementary Appendix). Only one solution is found 
+OBC_App_1_sims_PF.m -- Simulates the perfect foresight paths in the Simple Asset Pricing model (Example 1', Supplementary Appendix). Only one solution is found under calibration considered and M is found to be a P-matrix.
 
-OBC_App_1_sims_PF_loop.m -- Plots the policy function in the Simple Asset Pricing model (Example 1', Supplementary Appendix).
+OBC_App_1_sims_PF_loop.m -- Plots the policy function in the Simple Asset Pricing model (Example 1', Supplementary Appendix). Note there is one policy function (M was found to be positive definite, hence a P-matrix). 
 
-
+OBC_App_2_M_matrix.m -- Plots the regions (parameter combinations) for which M is (white) and is not (black) a P-matrix in the Policy Application in Section 4 of the paper. 
 
 
 OTHER INFO
