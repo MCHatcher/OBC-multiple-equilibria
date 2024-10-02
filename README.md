@@ -17,15 +17,22 @@ Guesses_triple_2.m -- Code which enumerates triple spells at the bound (given by
 
 Guesses_triple_3.m -- Code which enumerates triple spells at the bound (given by zeros), for a given T_guess, with the third spell lasting 3 periods. Note that we consider sequences that end in 1 (i.e. last row entry is set at 1) for convenience.
 
-Guesses_triple_loop.m -- Allows uses to run a loop (for l=1:n_loop, where n_loop is user specified) and where l indexes the length of the third spell. Note that we consider sequences that end in 1 (i.e. last row entry is set at 1) for convenience.
+Guesses_triple_loop.m -- Allows uses to run a loop (for l=1:n_loop, or set l = [2 5 etc.] for particular cases) and where l indexes the length of the third spell. Note that we consider sequences that end in 1 (i.e. last row entry is set at 1) for convenience.
 
 Guesses_master.m -- Based on the Guesses_....m files commented in by the user, this code generates a stacked matrix of guesses to be used as potential structures (sequence of regimes). If the number of guesses generated falls short of the N_guess specified by the user, then the excess guesses (columns) are random guesses of 0s and 1s (set Message_2=1); if the number of guesess generated exceeds N_guess, the excess columns are ignored (set Message_1=1). In both cases, the user is informed of the result; see the file Print.m below.   
 
 Guesses_master_FG.m -- Same as Guesses_master.m, but is convenient to have a file with more of Guesses_....m files 'commented in'. 
 
-Insert_App_1.m -- Specified the matrices of the different regimes (slack and bind) in the Simple Asset Pricing Model in Iacoviello and Guerrieri (2015,JME). This is used in the OBC_App_1_...m files (see below) and some results are reported in Example 1' (Supplementary Appendix to the paper). 
+Insert_App_1.m -- Specifies the calibration and matrices of the different regimes (slack and bind) in the Simple Asset Pricing Model in Iacoviello and Guerrieri (2015,JME). This is used in the OBC_App_1_...m files (see below) and some results are reported in Example 1' (Supplementary Appendix to the paper). 
 
-Insert_App_2_FG.m -- 
+Insert_App_2.m -- Specifies the calibration and matrices of the different regimes (slack and bind) in the Policy Application in the paper (Section 4). Case of inflation targeting interest rate rule, potentially with interest rate smoothing.
 
+Insert_App_2_PLT.m -- Same as Insert_App_2.m but for the case of a price-level targeting interest rate rule. An additional variable enters, namely the log price level.
+
+Insert_App_2_FG.m -- Same as Insert_App_2.m but for the case of forward guidance. Dimension of matrix B4 differs (n x 2 not n x 1) because of forward guidance news shocks in the monetary policy rule. 
+
+Insert_App_2_loop.m -- Same as Insert_App_2.m but with some parameters commented out for analysis of M matrix at different parameter values. The parameter combinations are set in the OBC_App_2_M_matrix file (see below).
+
+Insert_App_2_loop_PLT.m -- Same as Insert_App_2_loop.m but for the case of the price-level targeting rule.
 
 OTHER INFO
