@@ -14,7 +14,7 @@ Guesses_single.m -- Code which enumerates single spells at the bound starting at
 
 Guesses_double.m -- Code which enumerates double spells at the bound (given by zeros) for a given T_guess. Note that we consider sequences that end in 1 (i.e. last row entry is set at 1) for convenience.
 
-Guesses_triple_loop.m -- Code which enumerates triple spells at the bound (given by zeros), for a given T_guess, using a loop (for l=1:n_loop, or l = [2 5 etc.] for particular cases) where l indexes the length of the third spell at the bound. Note that we consider sequences that end in 1 (i.e. last row entry is set at 1) for convenience.
+Guesses_triple_loop.m -- Code which enumerates triple spells at the bound (given by zeros), for a given T_guess, using a loop (e.g. n_loop_l = [2 5]) where l indexes the length of the third spell at the bound. Note that we consider sequences that end in 1 (i.e. last row entry is set at 1) for convenience.
 
 Guesses_master.m -- Based on the Guesses_....m files commented in by the user, this code generates a stacked matrix of guesses to be used as potential structures (sequence of regimes). If the number of guesses generated falls short of the N_guess specified by the user, then the excess guesses (columns) are random guesses of 0s and 1s (set Message_2=1); if the number of guesess generated exceeds N_guess, the excess columns are ignored (set Message_1=1). In both cases, the user is informed of the result; see the file Print.m below.   
 
@@ -108,7 +108,11 @@ nvar = length(B1(:,1)) -- Determines the number of variables in the vector x(t) 
 
 nx -- Number of exogenous variables, must be set by the user. An example is a autoregressive variable subject to news shocks, e.g. productivity in the Real Business Cycle model example.
 
+n_loop_l -- Vectors which specifies lengths of the final spell at bound to be considered when generating guesses using the code Guesses_triple_loop.m. 
+
 X_init -- Vector of initial values x(0) for perfect foresight simulations. 
+
+e_vec -- Vector of news shocks set by the user.
 
 --------------
 MAIN OBJECTS
