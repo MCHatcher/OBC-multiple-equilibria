@@ -149,8 +149,6 @@ x_fin -- Matrix storing all solutions in order by columns, i.e. x(t,sol_1) (firs
 
 not_P -- Equal to 1 if M is not a P-matrix and equal to 0 if M is a P-matrix.
 
-is_pd -- Equal to 1 if M is general positive definite and 0 otherwise.
-
 
 
 
