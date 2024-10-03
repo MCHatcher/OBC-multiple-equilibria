@@ -112,7 +112,7 @@ n_loop_l -- Vectors which specifies lengths of the final spell at bound to be co
 
 X_init -- Vector of initial values x(0) for perfect foresight simulations. 
 
-e_vec -- Vector of news shocks set by the user.
+e_vec -- Matrix of news shocks of dimension m x 1 set by the user, where m is the number of distinct shocks.
 
 --------------
 MAIN OBJECTS
