@@ -1,6 +1,8 @@
 # OBC-multiple-equilibria
 This repository provides documents and codes for simulating multiple equilibria in otherwise-linear perfect foresight models with occasionally-binding constraints. The algorithm is an extension of Guerrieri and Iacoviello (2015,JME) and we utilise some results from Holden (2023,ReStat). A description of the codes and user instructions are provided below. It is convenient to view the file using e.g. MS Word.
 
+NOTE: The bounded variable is assumed to be ordered first in the vector of variables x(t) (see paper) and exogenous variables are assumed to be ordered last in x(t).
+
 ------------
 MAIN CODES
 ------------
@@ -115,13 +117,17 @@ X_init -- Vector of initial values x(0) for perfect foresight simulations.
 MAIN OBJECTS
 --------------
 
-ind_sol -- 
+ind_sol -- Matrix to store the verified guesses on the indicator variable
 
-mstar --
+mstar -- Matrix to store the index of those guesses which are solutions
 
-Verify --
+Verify -- Note that Verify(t) = 1 only the guess at date t is verfied, so a guessed sequence of regimes is verified only if sum(Verify) = T_sim-1 (see PF_insert.m, Line 93). 
 
-X_sol -- 
+X_sol -- Matrix for storing the solutions x(t) for t=1:T_sim-1, including any exogenous variables .
+
+X_sol_exc -- Matrix for storing 
+
+X_star_sol -- -- Matrix for storing the path of shadow variable for each verified sequence of structures
 
 -------------
 MAIN OUTPUTS
