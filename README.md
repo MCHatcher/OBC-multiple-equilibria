@@ -95,8 +95,10 @@ Solutions_insert_App_2.m -- Version of Solution_insert.m adapted to the New Keyn
 
 Solutions_insert_App_2_loop -- Similar to Solutions_insert_App_2.m, but is used in the forward guidance loop in the OBC_App_2_sims_PF_FG_loop.m file (see above). 
 
-------------
-OTHER INFO
-------------
+--------------
+USER OPTIONS
+--------------
+
+
 
 
