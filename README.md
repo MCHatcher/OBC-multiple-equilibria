@@ -98,7 +98,7 @@ Solutions_insert_App_2_loop -- Similar to Solutions_insert_App_2.m, but is used 
 -------------
 MAIN INPUTS
 -------------
-T_guess -- Guess on the date T from which the terminal solution applies. A subsequent line of code sets T_guess = max(T_guess,4) for convenience when forming the guesses matrix (see below).
+T_guess -- Guess on the date T from which the terminal solution applies. A subsequent line of code sets T_guess = max(T_guess,3) for convenience when forming the guesses matrix (see below).
 
 T_sim -- Simulation length for perfect foresight paths. A subsequent line of code sets T_sim = max(T_sim,T_guess + 30), i.e. T_guess + 30 is a lower bound because we would like to check whether the solution is away from the bound for all t>T. Using much larger values for T_sim will be appropriate if the latter is in doubt. 
 
