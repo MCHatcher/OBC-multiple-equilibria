@@ -117,9 +117,15 @@ X_init -- Vector of initial values x(0) for perfect foresight simulations.
 MAIN OBJECTS
 --------------
 
+Omega_bar, Gama_bar, Psi_bar -- Solution matrices of the fixed-structure terminal solution.
+
+Omeg_t, Gama_t, Psi_t -- 3-D arrays that store the time-varying matrices under each solution at each t.
+
+ind_stack -- Matrices of all guessed sequences of structures.
+
 ind_sol -- Matrix to store the verified guesses on the indicator variable.
 
-mstar -- Matrix to store the index of those guesses which are solutions.
+mstar -- Vector to store the index of those guesses which are solutions.
 
 Verify -- Note that Verify(t) = 1 only the guess at date t is verfied, so a guessed sequence of regimes is verified only if sum(Verify) = T_sim-1 (see PF_insert.m, Line 93). 
 
@@ -133,13 +139,18 @@ X_star_sol -- -- Matrix for storing the path of shadow variable for each verifie
 MAIN OUTPUTS
 -------------
 
-ind_fin --
+k -- Number of solutions found by the algorithm. If M is not a P-matrix (not_P=1), it is advisable to increase N_guess to see if multiple solutions are found. 
 
-x_fin --
+mstar -- Lists those guess numbers which correspond to solutions.
 
-not_P -- 
+ind_fin -- Matrix storing all sequences of the indicator variable that are consistent with solutions (i.e. all unique verified guesses on the indicator).
 
-k -- number of solutions found by the algorithm. If M is not a P-matrix (not_P=1), it is advisable to increase N_guess to see if multiple solutions are found. 
+x_fin -- Matrix storing all solutions in order by columns, i.e. x(t,sol_1) (first n-nx rows), x(t,sol_2) (next n-nx rows), ...,x(t,sol_k) (kth n-nx rows, followed by paths of nx exogenous vars, final nx rows).  
+
+not_P -- Equal to 1 if M is not a P-matrix and equal to 0 if M is a P-matrix.
+
+is_pd -- Equal to 1 if M is general positive definite and 0 otherwise.
+
 
 
 
