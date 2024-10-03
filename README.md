@@ -2,7 +2,7 @@
 This repository provides documents and codes for simulating multiple equilibria in otherwise-linear perfect foresight models with occasionally-binding constraints. The algorithm is an extension of Guerrieri and Iacoviello (2015,JME) and we utilise some results from Holden (2023,ReStat). A description of the codes and user instructions are provided below. It is convenient to view the file using e.g. MS Word.
 
 ------------
-CORE CODES
+MAIN CODES
 ------------
 
 Cho_and_Moreno.m -- Computes the fixed-structure fundamental rational expectations solution that satisfies the no-bubbles condition (if such a solution exists). This code is used to compute the terminal solution which applies in perpetuity after date T and converges to a steady-state away from the bound. (Other rational expectations algorithms could be used instead, provided the solution matrices are in the same format.)
@@ -95,10 +95,34 @@ Solutions_insert_App_2.m -- Version of Solution_insert.m adapted to the New Keyn
 
 Solutions_insert_App_2_loop -- Similar to Solutions_insert_App_2.m, but is used in the forward guidance loop in the OBC_App_2_sims_PF_FG_loop.m file (see above). 
 
+-------------
+MAIN INPUTS
+-------------
+
+T_guess -- Guess on the date T from which the terminal solution applies. A subsequent line of code sets T_guess = max(T_guess,3) for convenience when forming the guesses matrix (see below).
+
+T_sim -- Simulation length for perfect foresight paths. A subsequent line of code sets T_sim = max(T_sim,T_guess + 30), i.e. T_guess + 30 is a lower bound because we would like to check whether the solution is away from the bound for all t>T. Using much larger values for T_sim will be appropriate if the latter is in doubt. 
+
+nat_num, N_guess -- A line of code sets N_guess = nat_num*T_guess, where nat_num should be a positive integer. Multiplying by T_guess can make the interpretation of the 'guesses matrix' simpler, but is not essential. For example, if nat_num = 1, the guess matrix will be populated with all single spells at the bound consistent with T_guess. We consider sequences that end in 1 (i.e. last row entry is set at 1) for convenience. 
+
+nvar = length(B1(:,1)) -- Determines the number of variables in the vector x(t) (see paper).
+
+nx -- Number of exogenous variables, must be set by the user. An example is a autoregressive variable subject to news shocks, e.g. productivity in the Real Business Cycle model example.
+
+X_init -- Vector of initial values x(0) for perfect foresight simulations. 
+
 --------------
-USER OPTIONS
+MAIN OBJECTS
 --------------
 
+ind_sol -- 
 
+mstar --
 
+Verify --
 
+X_sol -- 
+
+-------------
+MAIN OUTPUTS
+-------------
