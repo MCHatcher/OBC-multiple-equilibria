@@ -102,6 +102,8 @@ T_guess -- Guess on the date T from which the terminal solution applies. A subse
 
 T_sim -- Simulation length for perfect foresight paths. A subsequent line of code sets T_sim = max(T_sim,T_guess + 30), i.e. T_guess + 30 is a lower bound because we would like to check whether the solution is away from the bound for all t>T. Using much larger values for T_sim will be appropriate if the latter is in doubt. 
 
+T_news -- Last date at which news shocks are non-zero.
+
 nat_num, N_guess -- A line of code sets N_guess = nat_num*T_guess, where nat_num should be a positive integer. Multiplying by T_guess can make the interpretation of the 'guesses matrix' simpler, but is not essential. For example, if nat_num = 1, the guess matrix will be populated with all single spells at the bound consistent with T_guess. We consider sequences that end in 1 (i.e. last row entry is set at 1) for convenience. 
 
 nvar = length(B1(:,1)) -- Determines the number of variables in the vector x(t) (see paper).
