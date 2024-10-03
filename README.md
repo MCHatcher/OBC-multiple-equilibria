@@ -6,12 +6,11 @@ NOTE: The bounded variable is assumed to be ordered first in the vector of varia
 ------------
 MAIN CODES
 ------------
-
 Cho_and_Moreno.m -- Computes the fixed-structure fundamental rational expectations solution that satisfies the no-bubbles condition (if such a solution exists). This code is used to compute the terminal solution which applies in perpetuity after date T and converges to a steady-state away from the bound. (Other rational expectations algorithms could be used instead, provided the solution matrices are in the same format.)
 
 Cho_Moreno_alternative.m -- Alternative algorthm for computing the terminal solution. Triggered automatically if an invertibility condition needed om Cho_and_Moreno.m is not met. 
 
-Guesses_single.m -- Code which enumerates single spells at the bound (given by zeros) for a given T_guess. Note that we consider sequences that end in 1 (i.e. last row entry is set at 1) for convenience.
+Guesses_single.m -- Code which enumerates single spells at the bound starting at for a given T_guess. Note that we consider sequences that end in 1 (i.e. last row entry is set at 1) for convenience.
 
 Guesses_double.m -- Code which enumerates double spells at the bound (given by zeros) for a given T_guess. Note that we consider sequences that end in 1 (i.e. last row entry is set at 1) for convenience.
 
@@ -40,7 +39,6 @@ Print.m -- Tells the user whether or not M is a P-matrix and whether the number 
 --------------------
 CODES FOR EXAMPLES
 --------------------
-
 Insert_App_1.m -- Specifies the calibration and matrices of the different regimes (slack and bind) in the Simple Asset Pricing Model in Iacoviello and Guerrieri (2015,JME). This file is used in the OBC_App_1_...m files (see below) and some results are reported in Example 1' (Supplementary Appendix to the paper). 
 
 Insert_App_2.m -- Specifies the calibration and matrices of the different regimes (slack and bind) in the Policy Application in the paper (Section 4). Case of inflation targeting interest rate rule, potentially with interest rate smoothing.
@@ -100,7 +98,6 @@ Solutions_insert_App_2_loop -- Similar to Solutions_insert_App_2.m, but is used 
 -------------
 MAIN INPUTS
 -------------
-
 T_guess -- Guess on the date T from which the terminal solution applies. A subsequent line of code sets T_guess = max(T_guess,3) for convenience when forming the guesses matrix (see below).
 
 T_sim -- Simulation length for perfect foresight paths. A subsequent line of code sets T_sim = max(T_sim,T_guess + 30), i.e. T_guess + 30 is a lower bound because we would like to check whether the solution is away from the bound for all t>T. Using much larger values for T_sim will be appropriate if the latter is in doubt. 
@@ -116,6 +113,7 @@ X_init -- Vector of initial values x(0) for perfect foresight simulations.
 --------------
 MAIN OBJECTS
 --------------
+V_0 = tril(ones(T_guess)) gives slack case in Col. 1 and all single spells starting at date 1 in the remaining columns (see Guesses_master.m and Guesses_master_FG.m). 
 
 Omega_bar, Gama_bar, Psi_bar -- Solution matrices of the fixed-structure terminal solution.
 
@@ -138,7 +136,6 @@ X_star_sol -- -- Matrix for storing the path of shadow variable for each verifie
 -------------
 MAIN OUTPUTS
 -------------
-
 k -- Number of solutions found by the algorithm. If M is not a P-matrix (not_P=1), it is advisable to increase N_guess to see if multiple solutions are found. 
 
 mstar -- Lists those guess numbers which correspond to solutions.
