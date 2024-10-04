@@ -1,6 +1,6 @@
 % Based on Cho and Moreno (2011, Journal of Econ Dynamics and Control)
 % Recursive algorithm for computing the unique fixed-structure fundamental
-% rational expectations solution that satisfies the no-bubbles condition
+% rational expectations solution that satisfies the no-bubbles condition.
 % Written by Michael Hatcher (m.c.hatcher@soton.ac.uk). Any errors are my own.
 
 %Cho and Moreno (2011) method for computing fixed structure solutions
@@ -12,7 +12,7 @@ if abs(det(B1)) >  0
      
     A = B1 \ B2;  B = B1 \ B3;  C = B1 \ B4;  D = B1 \ B5;
 
-%Note R = 0_{m \times m} as shocks in e(t) are white noise. Persistent shocks can be included in x(t).
+%Note R = 0_{m \times m} as shocks in e(t) are mean-zero white noise. Persistent shocks can be included in x(t).
 %See Kulish and Pagan (2017, Journal of Applied Econometrics)
     
 %Taken from main file
