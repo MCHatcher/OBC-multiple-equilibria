@@ -1,6 +1,8 @@
 %PF_insert. Guess and verify part of the algorithm.  Written by Michael Hatcher (m.c.hatcher@soton.ac.uk). 
 %Any errors are my own. Last updated: 12/04/2023.
 
+%Housekeeping
+mstar = zeros(N_guess,1);
 X_stack = NaN(nvar,1);
 X_sol = NaN(nvar,T_sim-1,N_guess); X_sol_exc = NaN(nvar-nx,T_sim-1,N_guess);
 ind_sol = NaN(N_guess,T_sim-1); 
@@ -78,23 +80,27 @@ for t=1:T_sim-1
         X_star = F*[X; X_e; X_lag] + G*e_vec(:,t) + H;
         X_star_store(t) = X_star;
         
-        if X_star >= X1_min && ind(t) == 1  || X_star <= X1_min && ind(t) == 0
+        if X_star > X1_min && ind(t) == 1  || X_star <= X1_min && ind(t) == 0    %Can use X_star => X1_min && ind(t) == 1 for knife-edge case
             Verify(t) = 1;
         else
             break
         end
 
-        %if X_stack(1,t) == max(X1_min,X_star) does not work well due to numerical precision
-        %For accuracy, can use vpa(.)
+        %if X_stack(1,t) == max(X1_min,X_star) does not seem to work well
             
 end 
 
-    if sum(Verify) == T_sim-1 && min(X_stack(1,T_guess:T_sim-1)) > X1_min  
+    if sum(Verify) == T_sim-1 && min(X_stack(1,T_guess+1:T_sim-1)) > X1_min  
          X_sol(:,:,m) = X_stack(:,:);
          X_sol_exc(:,:,m) = X_stack(1:nvar-nx,:);
          mstar(m) = m;
          ind_sol(m,:) = ind(1:T_sim-1)';
          X_star_sol(m,:) = X_star_store(1:T_sim-1);
+
+         if ~isempty(not_P) && not_P==0  %          
+            break    %Stop search if M is a P-matrix and a solution is found
+        end
+
     end
          
 end

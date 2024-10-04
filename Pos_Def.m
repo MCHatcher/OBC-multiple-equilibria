@@ -1,35 +1,18 @@
 %Check if M matrix is general positive definite --> P-matrix
-%Check if simple necessary conditions for a P-matrix are violated
 %Written by Michael Hatcher (m.c.hatcher@soton.ac.uk). 
-%Any errors are my own. Last updated: 12/04/2023.
+%Any errors are my own. Last updated: 03/10/2024.
 
-%Based on Holden (2022, Lemma 1 Part 2)
+%Based on Holden (2023, Lemma 1 Part 2)
 eig_vals = eig(M + M'); 
 length_M = length(M);
-is_pd = nnz(eig_vals>0) == length_M; % flag to check if it is PD 
+is_pd = nnz(eig_vals>0) == length_M; % flag to check if it is PD, nnz - no. of non-zero elements
 
-if is_pd == 0
+if is_pd == 1
 
-    if det(M) <= 0 || min(diag(M)) <=0 
-        not_P = 1;
+    not_P = 0;
 
-    else  
+elseif min(diag(M)) <=0  || det(M) <= 0 
 
-n_skip = max(round(length_M/10),1);
-max_iter = max(length(M)-1,1);
-
-for iter = 1:n_skip:max_iter
-
-det_M = det(M(1:iter,1:iter));
-
-        if det_M <= 0
-            not_P = 1;
-            break
-        end
+    not_P = 1;
 
 end
-
-    end
-
-end
-

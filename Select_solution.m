@@ -1,4 +1,4 @@
-%Select a solution (resolving the indeterminacy). Written by Michael Hatcher (m.c.hatcher@soton.ac.uk). 
+%Select a solution (Remark 1, resolving the indeterminacy). Written by Michael Hatcher (m.c.hatcher@soton.ac.uk). 
 %Any errors are my own. Last updated: 12/04/2023.
 
 %Pick a solution (resolving indeterminacy)
