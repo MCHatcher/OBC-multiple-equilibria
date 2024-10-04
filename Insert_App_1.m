@@ -1,4 +1,4 @@
-% Example 1' - Asset pricing model in Iacoviello and Guerrieri (2015,JME)
+%Example 1' - Asset pricing model in Iacoviello and Guerrieri (2015,JME)
 
 %Calibration
 betta = 0.99;
