@@ -148,7 +148,7 @@ mstar -- Lists those guess numbers which correspond to solutions.
 
 ind_fin -- Matrix storing all sequences of the indicator variable that are consistent with solutions (i.e. all unique verified guesses on the indicator).
 
-x_fin -- Matrix storing all solutions in order by columns, i.e. x(t,sol_1) (first n-nx rows), x(t,sol_2) (next n-nx rows), ...,x(t,sol_k) (kth n-nx rows, followed by paths of nx exogenous vars, final nx rows).  
+x_fin -- Matrix storing all solutions in order by rows, i.e. x(t,sol_1) (first n-nx rows), x(t,sol_2) (next n-nx rows), ...,x(t,sol_k) (kth n-nx rows, followed by paths of nx exogenous vars, final nx rows).  
 
 not_P -- Equal to 1 if M is not a P-matrix and equal to 0 if M is a P-matrix.
 
