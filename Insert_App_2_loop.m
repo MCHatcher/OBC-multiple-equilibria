@@ -1,5 +1,5 @@
-% Application 2 - New Keynesian model in Brendon et al. (2013). For analysis of the M matrix. We 'comment
-% out' certain parameters which are set in the 'loop' file.
+% Policy Application - New Keynesian model in Brendon, Paustian and Yates (2013). 
+% For analysis of the M matrix. We 'comment out' certain parameters set in the 'loop' file.
 
 %Calibration
 betta = 0.99;

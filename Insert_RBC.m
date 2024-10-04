@@ -1,4 +1,4 @@
-% Extra Application (Supplementary Appendix) - RBC model with a contraint
+% Example 2' (Supplementary Appendix) - RBC model with a contraint
 % on investment. The calibration here follows the baseline exercise in
 % Iacoviello and Guerrieri (2015, Section 4).
 

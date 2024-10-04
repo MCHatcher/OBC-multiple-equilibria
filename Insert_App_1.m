@@ -1,9 +1,9 @@
-% Application 1 - Asset pricing model in Iacoviello and Guerrieri (2015,JME)
+% Example 1' - Asset pricing model in Iacoviello and Guerrieri (2015,JME)
 
 %Calibration
 betta = 0.99;
 rho = 0.5; rho_u = 0.5;
-X1_min = -(1/betta-1); %Lower bound (must be less than q_bar = 0)
+X1_min = -(1/betta-1);  %Lower bound (must be less than q_bar = 0)
 sigma = 5;
 phi = 0.2;
 

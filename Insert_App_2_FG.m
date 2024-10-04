@@ -1,5 +1,5 @@
-% Application 2 - New Keynesian model in Brendon et al. (2013). Parameters
-% here are based on the example in Holden (2022, Supp Appendix, Section E).
+% Policy Application - NK model in Brendon, Paustian and Yates (2013) + forward guidance. 
+% Parameters based on the example in Holden (2023, Supp Appendix, Section E).
 
 %Calibration
 betta = 0.99;

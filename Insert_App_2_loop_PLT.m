@@ -1,12 +1,12 @@
-% Application 2 - New Keynesian model in Brendon et al. (2013).  For analysis of the M matrix 
-% in the case of a PLT interest rate rule. We 'comment out' certain parameters which are set in the 'loop' file.
+% Policy Application - New Keynesian model in Brendon, Paustian and Yates (2013).  For analysis of the M matrix 
+% in the case of a PLT interest rate rule. We 'comment out' certain parameters set in the 'loop' file.
 
 %Calibration
 betta = 0.99;
 X1_min = betta-1; 
 %sigma = 1;
 kappa = (1-0.85)*(1-0.85*betta)*(2+sigma)/0.85;
-rho_i = 0.4;
+rho_i = 0;
 %thetta_pi = 1.5;
 thetta_p = thetta_pi;
 thetta_y = 0;

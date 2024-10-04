@@ -1,6 +1,6 @@
-% Application 2 - New Keynesian model in Brendon et al. (2013). Parameters
-% here are based on the example in Holden (2022, Supp Appendix, Section E),
-% but the interest rate responds to the price-level (not inflation) gap.
+% Policy Application - New Keynesian model in Brendon, Paustian and Yates (2013). 
+% Parameters excet theta_p based on the example in Holden (2023, Supp Appendix, Section E).
+% Note that the interest rate responds to the price-level gap (not the inflation gap).
 
 %Calibration
 betta = 0.99;
