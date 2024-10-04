@@ -1,15 +1,19 @@
-%Example 1 from the OBC paper: using the solution algorithm. Based on Example 2 in Holden (2022).
-%To study a different example, simply change the parameters and matrices
-%Model structures are defined in the 'Insert' files
+%Example 1 from the OBC paper: using the solution algorithm. Based on Example 2 in Holden (2023).
+%To study a different example, simply change the parameters, matrices and nx
+%Model matrices are defined in the 'Insert' files
 %Written by Michael Hatcher (m.c.hatcher@soton.ac.uk). Any errors are my own.
 
 clc; clear; %close all;
 
-T_guess = 4; % Final date before terminal solution (guess)
+T_guess = 8; % Final date before terminal solution (guess)
+T_guess = max(T_guess,3);
 T_sim = T_guess + 27; % Simulation length
-N_guess = 30;  %No. of guesses 
+nat_num = 300;  %Integer >=1
+N_guess = nat_num*T_guess;  %No. of guesses 
+T_sim = max(T_sim,T_guess + 30);
+vec_1 = ones(T_sim-T_guess,1);  %Vec of ones
 
-% Model and calibration
+%Model and calibration
 run Insert_Example_2
 
 %No. of variables
@@ -17,56 +21,35 @@ nvar = length(B1(:,1)); %No. vars in x
 nx = 0;  %No. exogenous vars in x
 
 %Housekeeping
-Verify = NaN(T_sim-1,1);  mstar = zeros(N_guess,1); ind_sol = NaN(N_guess,T_sim-1);
-Time = 1:T_sim-1;  X_sol = NaN(nvar,T_sim-1,N_guess);  
+Time = 1:T_sim-1;
 
-% Find terminal solution (Cho and Moreno 2011, JEDC)
+%Find terminal solution
 run Cho_and_Moreno
 
 %Initial values for simulations
 X_init = [0; pi_0];  
 X_stack = NaN(length(X_init),1);
 e_vec = zeros(size(B4,2),T_sim+1);
-e_vec(1,1) = 0; e(1,2) = 0;  %Shock in period 1
 
 Omeg_t = NaN(size(Omega_bar,1), size(Omega_bar,2), T_sim);
 Gama_t = NaN(size(Gama_bar,1), size(Gama_bar,2), T_sim);
 Psi_t = NaN(size(Psi_bar,1), size(Psi_bar,2), T_sim);
 
 %Check if M is a P matrix
+not_P = NaN;
 run M_matrix
 run P_matrix
 
 %Guessed structure
-ind_stack = randi([0 1],T_guess,N_guess);
-ind_stack(:,1) = ones(T_guess,1);
-for i=2:T_guess
-    ind_stack(:,i) = [zeros(i-1,1); ones(T_guess-(i-1),1)]; 
-end
-vec_1 = ones(T_sim-T_guess,1);
+rng(1), ind_stack = randi([0 1],T_guess,N_guess);  %Initialize with random guesses
+run Guesses_master
+%run Guesses_master_FG
 
 run PF_insert.m
 
-mstar(mstar==0) = [];
-if isempty(mstar) 
-    disp('No solution found. Check T_guess and N_guess are not too small.')
-end
-    
-X_sol = X_sol(:,:,mstar);
-solutions =  reshape(permute(X_sol,[1,3,2]),[],size(X_sol,2));
-ind_solutions = ind_sol(mstar,:);
+run Solutions_insert_App_2.m
 
-x_fin = unique(solutions,'rows','stable');
-sol_ind = unique(ind_solutions,'rows');
-
-%No. of solutions
-k = length(x_fin(:,1,1))/nvar;
-
-if k==1
-    disp('Unique solution found')
-else
-    disp('Multiple solutions found')
-end
+run Print.m
 
 for j=1:k
     

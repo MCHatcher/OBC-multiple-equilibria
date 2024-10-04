@@ -1,38 +1,39 @@
 %Extra Example (RBC model + investment constraint) in the Supplementary Appendix.
-%This code computes and plots the policy functions for Investment and
-%Consumption. To study a different example, simply change the parameters and matrices
-%Model structures are defined in the 'Insert' files
+%This code computes and plots the policy functions for Investment and Consumption. 
+%To study a different example, simply change the parameters, matrices and nx
+%Model matrices are defined in the 'Insert' files
 %Written by Michael Hatcher (m.c.hatcher@soton.ac.uk). Any errors are my own.
 
 clc; clear; %close all;
 
 T_guess = 20; % Final date before terminal solution (guess)
+T_guess = max(T_guess,3);
 T_sim = T_guess+1; % Simulation length
 T_news = 3;
-N_guess = 20;  %No. of guesses 
-N_policy = 100; %No. of points for policy function
+nat_num = 200;  %Integer >=1
+N_guess = nat_num*T_guess;  %No. of guesses 
+T_sim = max(T_sim,T_guess + 30);
+vec_1 = ones(T_sim-T_guess,1);  %Vec of ones
+
+N_policy = 60; %No. of points for policy function
 
 %Housekeeping
-Time = 1:T_sim-1; inv_plot = NaN(N_policy,1); c_plot = inv_plot;
-
-%Guessed structure
-rng(1)
-ind_stack = randi([0 1],T_guess,N_guess);
-ind_stack(:,1) = ones(T_guess,1); 
-for i=2:T_guess
-    ind_stack(:,i) = [zeros(i-1,1); ones(T_guess-(i-1),1)]; 
-end
-vec_1 = ones(T_sim-T_guess,1);
+Time = 1:T_sim-1; inv_plot = NaN(N_policy,1); c_plot = inv_plot; not_P = NaN;
     
-% Model and calibration
+%Model and calibration
 run Insert_RBC
 
 %No. of variables
 nvar = length(B1(:,1));
 nx = 1;  %No. exog vars in x
 
-% Find terminal solution (Cho and Moreno 2011, JEDC)
+%Find terminal solution
 run Cho_and_Moreno
+
+%Guessed structure
+rng(1), ind_stack = randi([0 1],T_guess,N_guess);  %Initialize with random guesses
+%run Guesses_master
+run Guesses_master_2
 
 %Shocks
 X_init = zeros(nvar,1);
@@ -53,47 +54,26 @@ for j=1:length(e1_stack)
     
     e(1) = e1_stack(j); 
     e_vec = [e(1)  e(2:T_news) zeros(1,T_sim+1-T_news)];
+
+    %Check if M is a P matrix
+    if j==1
+        run M_matrix
+        run P_matrix
+    end
     
     x_fin = NaN(nvar,T_sim-1);
     mstar = zeros(N_guess,1);
  
     run PF_insert
 
-    mstar(mstar==0) = [];
+    run Solutions_insert  
 
-if isempty(mstar) 
-    
-    disp('No solution found. Check T_guess and N_guess are not too small.')
-    
-elseif ~isempty(mstar) 
-
-X_sol_exc = X_sol_exc(:,:,mstar);    
-solutions =  reshape(permute(X_sol_exc,[1,3,2]),[],size(X_sol_exc,2));
-ind_solutions = ind_sol(mstar,:);
-X_sol = X_sol(:,:,mstar);
-X_exog = X_sol(nvar-nx+1:nvar,:,1);  
-
-%Solution paths
-x_fin = unique(solutions,'rows','stable');
-x_fin = [x_fin; X_exog];
-sol_ind = unique(ind_solutions,'rows','stable');
-ind_fin = sol_ind(1,:); 
-
-%No. of solutions
-k = length(x_fin(:,1))/nvar;
-
-     if k==1
-        %disp('Unique solution found')
-    else
-        disp('Warning: Multiple solutions or no solution')
-     end
-    
-end  
-
-inv_plot(j) = 100*x_fin(1,1);
-c_plot(j) = 100*x_fin(3,1);
+inv_plot(j) = 100*x_fin(1,1);  %Points of policy function
+c_plot(j) = 100*x_fin(3,1);    %Points of policy function
 
 end
+
+run Print.m
 
 figure(1)
 subplot(1,2,1), plot(100*e1_stack,inv_plot,'k'), ylabel('Percent'), title('Policy function for Investment'), hold on,

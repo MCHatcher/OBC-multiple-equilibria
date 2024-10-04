@@ -1,4 +1,4 @@
-%OBC Example 1 in the paper: solution 'by hand'. Based on Example 2 from Holden (2022, ReStat).
+%OBC Example 1 in the paper: solution 'by hand'. Based on Example 2 from Holden (2023, ReStat).
 %Written by Michael Hatcher (m.c.hatcher@soton.ac.uk). Any errors are my own.
 
 clc, clear
@@ -50,7 +50,7 @@ int_star = [NaN; int_star]; int_bind_star = [NaN; int_bind_star];
 %figure(1)
 subplot(1,2,1), plot(Time, pi,'k','LineWidth',1.5), hold on, plot(Time,pi_bind,'Color',[0.5 0.5 0.5],'LineWidth',1.5), xlabel('Time'), title('Inflation \pi')
 subplot(1,2,2), plot(Time, int,'k','LineWidth',1.5), hold on, plot(Time,int_bind,'Color',[0.5 0.5 0.5],'LineWidth',1.5), title('Nominal interest rate \it{i}'),
-hold on, plot(Time,int_star,'x','MarkerSize',5, 'MarkerEdgeColor','black'), plot(Time,int_bind_star,'x','MarkerSize',5, 'MarkerEdgeColor','green'), 
+hold on, plot(Time,int_star,'x','MarkerSize',5, 'MarkerEdgeColor','black'), plot(Time,int_bind_star,'x','MarkerSize',5, 'MarkerEdgeColor',[0.5 0.5 0.5]), 
 xlabel('Time')
 
 

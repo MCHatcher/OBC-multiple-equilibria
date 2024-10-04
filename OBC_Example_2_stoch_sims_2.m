@@ -1,5 +1,6 @@
-%Example 2 in the paper -- `stochastic sims' using the algorithm. Model based on Example 2 in Holden (2023).
-%Case of stochastic simulation as in Example 2 of the paper (Hatcher, 2024) 
+%Fisherian model: `stochastic sims' using the algorithm. Model based on Example 2 in Holden (2023).
+%Case of stochastic simulation, similar to Example 2 of the paper (Hatcher, 2024) 
+%In this version, we illustrate the 'flat priors' approach to selecting a solution (Line 98).
 %To study a different example, simply change the parameters, matrices and nx
 %Model matrices are defined in the 'Insert' files
 %Written by Michael Hatcher (m.c.hatcher@soton.ac.uk). Any errors are my own.
@@ -14,7 +15,7 @@ N_guess = nat_num*T_guess;  %No. of guesses
 T_sim = max(T_sim,T_guess + 30);
 vec_1 = ones(T_sim-T_guess,1);  %Vec of ones
 
-% Model and calibration
+%Model and calibration
 run Insert_Example_2
 
 %No. of variables
@@ -25,17 +26,11 @@ nx = 0;  %No. exogenous vars in x
 Time = 1:20; T_plot = 20;
 N_sims = 5;  %No. of simulations 
 
-%Prior prob. of each solution
-prob(1) = 0.95; prob(2) = 1 - prob(1);
-
 %Housekeeping
 X_sol = NaN(nvar,T_sim-1,N_guess); kstar_stack = NaN(N_sims,T_sim-1);
 x_t1 = NaN(nvar,T_sim); ind_t1 = NaN(1,T_sim); X_stack = NaN(nvar,T_sim-1);
 no_solutions = NaN(1,T_sim-1); no_uniq_solutions = no_solutions;
 excess_solutions = no_solutions; ind_sol = NaN(N_guess,T_sim-1);
-
-%Model and calibration
-run Insert_Example_2
 
 %Find terminal solution
 run Cho_and_Moreno 
@@ -50,7 +45,6 @@ Gama_t = NaN(size(Gama_bar,1), size(Gama_bar,2), T_sim);
 Psi_t = NaN(size(Psi_bar,1), size(Psi_bar,2), T_sim);
 
 %Check if M is a P matrix
-not_P = NaN;
 run M_matrix
 run P_matrix
 
@@ -102,7 +96,8 @@ k = length(x_fin(:,1,1))/nvar;
         kstar = 1; 
         x_t1(:,t1) = x_fin(1:nvar,t1);
         ind_t1(1,t1) = sol_ind(1,t1);  
-    else   
+    else 
+        prob = ones(k,1)/k;  %Agnostic -- flat priors
         run Select_solution.m   %Resolve indeterminacy       
     end
 
@@ -119,8 +114,7 @@ subplot(2,2,1), plot([0 Time],[pi_0 x_t1(2,1:T_plot)],'k'),  xlabel('Time'), tit
 subplot(2,2,2), plot(Time,x_t1(1,1:T_plot),'k'),  xlabel('Time'), title('Nominal interest rate \it{i}'), hold on
 
 end
-
-run Print.m
    
+run Print.m
 
 

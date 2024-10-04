@@ -1,4 +1,4 @@
-%OBC Example 1 in the paper: solution 'by hand'. Based on Example 2 from Holden (2022, ReStat).
+%OBC Example 1 in the paper: solution 'by hand', Fig 2 left panel. Based on Example 2 from Holden (2023, ReStat).
 %Written by Michael Hatcher (m.c.hatcher@soton.ac.uk). Any errors are my own.
 
 clc, clear
