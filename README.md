@@ -18,7 +18,7 @@ Guesses_triple_loop.m -- Code which enumerates triple spells at the bound (given
 
 Guesses_master.m -- Based on the Guesses_....m files commented in by the user, this code generates a stacked matrix of guesses to be used as potential structures (sequence of regimes). If the number of guesses generated falls short of the N_guess specified by the user, then the excess guesses (columns) are random guesses of 0s and 1s (set Message_2=1); if the number of guesess generated exceeds N_guess, the excess columns are ignored (set Message_1=1). In both cases, the user is informed of the result; see the file Print.m below.   
 
-Guesses_master_FG.m -- Same as Guesses_master.m, but has more of Guesses_....m files 'commented in' (for convenience). 
+Guesses_master_2.m -- Same as Guesses_master.m, but has more of Guesses_....m files 'commented in' (for convenience). 
 
 M_matrix.m -- Computes the M matrix of impulse responses (see Holden,2023) for a model with structure defined in the Insert_....m files. The resulting matrix can then be used in P_matrix.m to determine whether the M matrix has the P-matrix property.
 
@@ -119,7 +119,7 @@ e_vec -- Matrix of news shocks of dimension m x 1 set by the user, where m is th
 --------------
 MAIN OBJECTS
 --------------
-V_0 = tril(ones(T_guess)) gives slack case in Col. 1 and all single spells starting at date 1 in the remaining columns (see Guesses_master.m and Guesses_master_FG.m). 
+V_0 = tril(ones(T_guess)) gives slack case in Col. 1 and all single spells starting at date 1 in the remaining columns (see Guesses_master.m and Guesses_master_2.m). 
 
 Omega_bar, Gama_bar, Psi_bar -- Solution matrices of the fixed-structure terminal solution.
 
