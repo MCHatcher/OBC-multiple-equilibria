@@ -110,7 +110,7 @@ nvar = length(B1(:,1)) -- Determines the number of variables in the vector x(t) 
 
 nx -- Number of exogenous variables, must be set by the user. An example is a autoregressive variable subject to news shocks, e.g. productivity in the Real Business Cycle model example.
 
-n_loop_l -- Vector which specifies which lengths of the final spell at the bound in the case of triple spells. It is used in Guesses_triple_loop.m. Note: if max(n_loop_l) > T_guess-4, then for this value of l, no third spell is possible. 
+n_loop_l -- Vector which specifies lengths of the final spell at the bound in the case of triple spells. It is used in Guesses_triple_loop.m. Note: if max(n_loop_l) > T_guess-4, then for this value of l, no third spell is possible. 
 
 X_init -- Vector of initial values x(0) for perfect foresight simulations. 
 
