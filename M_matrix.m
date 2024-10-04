@@ -1,8 +1,7 @@
-%Computing the M martix of impulse responses. For reference, see Holden
-%(2022, Sec 2.4 and Online Appendix, Sec D). Code written by Michael Hatcher (m.c.hatcher@soton.ac.uk). 
-%Any errors are my own. Last updated: 12/04/2023.
+%Computing the M martix of impulse responses. For reference, see Holden (2023, Sec 2.4 and Online Appendix, Sec D). 
+%Code written by Michael Hatcher (m.c.hatcher@soton.ac.uk). Any errors are my own. Last updated: 03/10/2024.
 
-not_P = 0;  %Initialization
+not_P = NaN;  %Initialization
 Gama_hat = (B1 - B2*Omega_bar) \ eye(length(X_init));
 X_init_adj = zeros(length(X_init),1);
 
@@ -11,10 +10,12 @@ if det(B1-B2-B3) == 0
 end
 X_bar = (B1-B2-B3) \ B5;
 
+e_tild = NaN(length(X_init),T_guess+1); e_tild1 = e_tild;
+
 for j=1:T_guess
       
 Psi = Psi_bar-Psi_bar; Psi_1 = Psi; 
-v = zeros(length(X_init),T_guess+1);
+v = zeros(length(X_init),T_guess+1); 
 v(1,j) = 1;  
 
     for t=1:T_guess+1
