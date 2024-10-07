@@ -18,7 +18,7 @@ vec_1 = ones(T_sim-T_guess,1);  %Vec of ones
 N_policy = 60; %No. of points for policy function
 
 %Housekeeping
-Time = 1:T_sim-1; inv_plot = NaN(N_policy,1); c_plot = inv_plot; not_P = NaN;
+Time = 1:T_sim-1; inv_plot = NaN(N_policy,1); c_plot = inv_plot; 
     
 %Model and calibration
 run Insert_RBC
@@ -35,31 +35,29 @@ rng(1), ind_stack = randi([0 1],T_guess,N_guess);  %Initialize with random guess
 %run Guesses_master
 run Guesses_master_2
 
-%Shocks
-X_init = zeros(nvar,1);
-
+%Housekeeping
 Omeg_t = NaN(size(Omega_bar,1), size(Omega_bar,2), T_sim);
 Gama_t = NaN(size(Gama_bar,1), size(Gama_bar,2), T_sim);
 Psi_t = NaN(size(Psi_bar,1), size(Psi_bar,2), T_sim);
+
+%Shocks
+e(2:T_news) = 0; %Specified news shocks
+e_vec = [0  e(2:T_news) zeros(1,T_sim+1-T_news)];  X_init = zeros(nvar,1);  %Initial conditions
+e1_stack = linspace(-0.03,0.02,N_policy);    %Policy function points
     
 X_stack = NaN(length(X_init),1);
 X_sol = NaN(nvar,T_sim-1,N_guess); X_sol_exc = NaN(nvar-nx,T_sim-1,N_guess);
 ind_sol = NaN(N_guess,T_sim-1);
 
-%Shocks
-e(2:T_news) = 0; %Specified news shocks
-e1_stack = linspace(-0.03,0.02,N_policy);
+%Check if M is a P matrix
+not_P = NaN;
+run M_matrix
+run P_matrix
 
 for j=1:length(e1_stack)
     
     e(1) = e1_stack(j); 
     e_vec = [e(1)  e(2:T_news) zeros(1,T_sim+1-T_news)];
-
-    %Check if M is a P matrix
-    if j==1
-        run M_matrix
-        run P_matrix
-    end
     
     x_fin = NaN(nvar,T_sim-1);
     mstar = zeros(N_guess,1);

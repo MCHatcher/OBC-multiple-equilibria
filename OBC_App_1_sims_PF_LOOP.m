@@ -17,8 +17,8 @@ vec_1 = ones(T_sim-T_guess,1);  %Vec of ones
 N_policy = 60;  %No. of points for policy function
 
 %Housekeeping
-no_solutions =  NaN(1,T_sim-1); not_P = NaN;
-Time = 1:T_sim-1; r_plot = NaN(N_policy,1); q_plot = r_plot;
+no_solutions =  NaN(1,T_sim-1); Time = 1:T_sim-1; 
+r_plot = NaN(N_policy,1); q_plot = r_plot;
 
 % Model and calibration
 run Insert_App_1
@@ -45,6 +45,7 @@ e1_stack = linspace(-0.2,0.2,N_policy);
 e_vec = [zeros(1,T_sim+1)]; X_init = zeros(nvar,1);   %Initial values
 
 %Check if M is a P matrix
+not_P = NaN;
 run M_matrix
 run P_matrix
 
