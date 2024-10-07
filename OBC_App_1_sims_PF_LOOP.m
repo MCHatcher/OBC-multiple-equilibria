@@ -42,17 +42,16 @@ run Guesses_master
 %Shocks
 e(2:T_news) = 0; %Specified news shocks
 e1_stack = linspace(-0.2,0.2,N_policy);
+e_vec = [zeros(1,T_sim+1)]; X_init = zeros(nvar,1);   %Initial values
+
+%Check if M is a P matrix
+run M_matrix
+run P_matrix
 
 for j=1:length(e1_stack)
     
     e(1) = e1_stack(j); 
-    e_vec = [e(1) e(2:T_news) zeros(1,T_sim+1-T_news)]; X_init = zeros(nvar,1);   %Initial values
-
-    %Check if M is a P matrix
-    if j==1
-        run M_matrix
-        run P_matrix
-    end
+    e_vec = [e(1) e(2:T_news) zeros(1,T_sim+1-T_news)];  %X_init = zeros(nvar,1);   %Initial value
     
     x_fin = NaN(nvar,T_sim-1); %To store points of policy function
 
