@@ -27,8 +27,8 @@ run Cho_and_Moreno
 
 %Guessed structure
 rng(1), ind_stack = randi([0 1],T_guess,N_guess);  %Initialize with random guesses
-%run Guesses_master
-run Guesses_master_2
+run Guesses_master
+%run Guesses_master_2
 
 %Shocks
 e(1) = -0.04; e(2:T_news) = 0; %Specified news shocks

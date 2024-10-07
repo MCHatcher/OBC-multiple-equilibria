@@ -32,8 +32,8 @@ run Cho_and_Moreno
 
 %Guessed structure
 rng(1), ind_stack = randi([0 1],T_guess,N_guess);  %Initialize with random guesses
-%run Guesses_master
-run Guesses_master_2
+run Guesses_master
+%run Guesses_master_2
 
 %Housekeeping
 Omeg_t = NaN(size(Omega_bar,1), size(Omega_bar,2), T_sim);
