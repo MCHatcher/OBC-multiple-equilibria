@@ -15,7 +15,7 @@ N_guess = nat_num*T_guess;  %No. of guesses
 T_sim = max(T_sim,T_guess + 30);
 vec_1 = ones(T_sim-T_guess,1);  %Vec of ones
 
-N_policy = 60; %No. of points for policy function
+N_policy = 80; %No. of points for policy function
 
 %Housekeeping
 Time = 1:T_sim-1; inv_plot = NaN(N_policy,1); c_plot = inv_plot; 
