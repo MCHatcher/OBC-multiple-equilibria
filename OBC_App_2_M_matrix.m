@@ -52,7 +52,7 @@ line(1:length(DY_coef)) = 1;
 
 [X,Y] = meshgrid(DY_coef,PI_coef);
 figure(1)
-subplot(1,3,3), contourf(X,Y,Z,1), colormap(hot), title('\sigma = 1'),   %title('\rho_i = 0.4')
+subplot(1,3,1), contourf(X,Y,Z,1), colormap(hot), title('\sigma = 1'),   %title('\rho_i = 0.4')
 xlabel('\theta_{\Delta y}'), ylabel('\theta_\pi'),  xlim([0,inf]),
 ylim([1,inf]), hold on, %plot(DY_coef,line,'--k')
 
